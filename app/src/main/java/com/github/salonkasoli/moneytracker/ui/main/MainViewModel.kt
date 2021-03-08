@@ -1,6 +1,5 @@
-package com.github.salonkasoli.moneytracker.ui
+package com.github.salonkasoli.moneytracker.ui.main
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -10,7 +9,6 @@ import com.github.salonkasoli.moneytracker.db.TotalMoneyEntity
 import com.github.salonkasoli.moneytracker.util.AppLogger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.logging.Logger
 
 class MainViewModel : ViewModel() {
 

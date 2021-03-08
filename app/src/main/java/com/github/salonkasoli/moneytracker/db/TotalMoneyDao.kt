@@ -17,4 +17,7 @@ interface TotalMoneyDao {
 
     @Insert
     fun insert(entity: TotalMoneyEntity): Completable
+
+    @Query("DELETE FROM totalmoneyentity")
+    fun clear() : Completable
 }
