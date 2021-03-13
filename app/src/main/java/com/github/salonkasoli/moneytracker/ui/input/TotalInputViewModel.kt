@@ -8,6 +8,7 @@ import com.github.salonkasoli.moneytracker.db.TotalMoneyDao
 import com.github.salonkasoli.moneytracker.db.TotalMoneyEntity
 import com.github.salonkasoli.moneytracker.util.AppLogger
 import com.github.salonkasoli.moneytracker.util.State
+import com.github.salonkasoli.moneytracker.util.TimeUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -23,9 +24,8 @@ class TotalInputViewModel : ViewModel() {
 
     fun saveNewTotal(newValue: Int) {
         disposable.add(
-            db.clear()
+            db.insert(TotalMoneyEntity(newValue, TimeUtil.currentTime()))
                 .doOnSubscribe { _state.postValue(State.Loading) }
-                .andThen(db.insert(TotalMoneyEntity(newValue)))
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {

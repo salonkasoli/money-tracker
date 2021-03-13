@@ -7,6 +7,7 @@ import com.github.salonkasoli.moneytracker.App
 import com.github.salonkasoli.moneytracker.db.TotalMoneyDao
 import com.github.salonkasoli.moneytracker.db.TotalMoneyEntity
 import com.github.salonkasoli.moneytracker.util.AppLogger
+import com.github.salonkasoli.moneytracker.util.TimeUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
@@ -23,14 +24,21 @@ class MainViewModel : ViewModel() {
     fun updateData() {
         disposable.add(
             db.getTotal()
-                .map { it[0] }
+                .map { it.last() }
                 .subscribeOn(Schedulers.io())
                 .subscribe(
                     {
                         _data.postValue(MainViewState(it))
                     },
                     {
-                        _data.postValue(MainViewState(TotalMoneyEntity(0)))
+                        _data.postValue(
+                            MainViewState(
+                                TotalMoneyEntity(
+                                    0,
+                                    TimeUtil.currentTime()
+                                )
+                            )
+                        )
                         AppLogger.log("Error while getting total from db. Error = $it")
                     }
                 )

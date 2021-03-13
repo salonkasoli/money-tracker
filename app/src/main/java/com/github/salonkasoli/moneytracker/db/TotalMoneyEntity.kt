@@ -7,7 +7,9 @@ import androidx.room.PrimaryKey
 @Entity
 class TotalMoneyEntity(
     @ColumnInfo(name = "total_money")
-    val totalMoney: Int
+    val totalMoney: Int,
+    @ColumnInfo(name = "date")
+    val date: Long
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
