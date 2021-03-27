@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.input.TotalInputActivity" />
+        <activity android:name=".ui.moneypart.MoneyPartActivity" />
     </application>
 
 </manifest>

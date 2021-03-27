@@ -6,6 +6,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.github.salonkasoli.moneytracker.databinding.ActivityMainBinding
 import com.github.salonkasoli.moneytracker.ui.input.TotalInputActivity
+import com.github.salonkasoli.moneytracker.ui.moneypart.MoneyPartActivity
 import com.github.salonkasoli.moneytracker.util.StateController
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.buttonAdd.setOnClickListener {
-            startActivity(TotalInputActivity.intent(this))
+            startActivity(MoneyPartActivity.newIntent(this))
         }
     }
 
