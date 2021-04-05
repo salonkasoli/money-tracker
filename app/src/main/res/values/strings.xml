@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Money Tracker</string>
 
-    <string name="total_input_title">Сколько у вас сегодня денег?</string>
+    <string name="total_name_title">Где же хранятся деньги?</string>
+    <string name="total_total_title">А сколько денег?</string>
     <string name="total_input_button_next">Сохранить</string>
+
+    <string name="money_part_add">Добавить</string>
+    <string name="money_part_save">Сохранить</string>
 </resources>

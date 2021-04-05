@@ -13,10 +13,17 @@ import com.github.salonkasoli.moneytracker.util.StateController
 class TotalInputActivity : AppCompatActivity() {
 
     companion object {
-        fun intent(context: Context): Intent {
-            return Intent(context, TotalInputActivity::class.java)
+        private const val EXTRA_ARGS = "extra_args"
+
+        fun intent(context: Context, args: TotalInputArgs): Intent {
+            return Intent(context, TotalInputActivity::class.java).apply {
+                putExtra(EXTRA_ARGS, args)
+            }
         }
     }
+
+    private val args: TotalInputArgs
+        get() = intent.getSerializableExtra(EXTRA_ARGS) as TotalInputArgs
 
     private val viewModel: TotalInputViewModel by viewModels()
     private lateinit var binding: ActivityTotalInputBinding
@@ -33,8 +40,17 @@ class TotalInputActivity : AppCompatActivity() {
             }
         }
 
+        binding.totalEditText.setText(args.total.toString())
+        binding.nameEditText.setText(args.name)
+
         binding.buttonSave.setOnClickListener {
-            viewModel.saveNewTotal(binding.editText.editableText.toString().toInt())
+            viewModel.update(
+                TotalInputArgs(
+                    args.index,
+                    binding.nameEditText.editableText.toString(),
+                    binding.totalEditText.editableText.toString().toLong()
+                )
+            )
         }
     }
 }

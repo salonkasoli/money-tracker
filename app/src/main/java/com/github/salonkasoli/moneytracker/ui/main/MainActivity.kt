@@ -26,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding.buttonAdd.setOnClickListener {
             startActivity(MoneyPartActivity.newIntent(this))
         }
+
+        startActivity(MoneyPartActivity.newIntent(this))
     }
 
     override fun onResume() {

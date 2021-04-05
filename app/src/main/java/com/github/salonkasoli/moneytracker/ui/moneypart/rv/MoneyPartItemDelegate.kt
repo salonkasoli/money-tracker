@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.salonkasoli.moneytracker.databinding.MoneyPartListItemBinding
 import com.github.salonkasoli.moneytracker.util.rv.AdapterDelegate
 
-class MoneyPartItemDelegate : AdapterDelegate {
+class MoneyPartItemDelegate(
+    private val clickListener: (MoneyPartItem) -> Unit
+) : AdapterDelegate {
 
     override fun isForViewType(position: Int, item: Any) = item is MoneyPartItem
 
@@ -15,6 +17,9 @@ class MoneyPartItemDelegate : AdapterDelegate {
         item as MoneyPartItem
         holder.binding.title.text = item.title
         holder.binding.total.text = item.total
+        holder.itemView.setOnClickListener {
+            clickListener.invoke(item)
+        }
     }
 
     override fun createHolder(parent: ViewGroup): RecyclerView.ViewHolder {
@@ -32,5 +37,6 @@ class MoneyPartItemDelegate : AdapterDelegate {
 
 class MoneyPartItem(
     val title: String,
-    val total: String
+    val total: String,
+    val index: Int
 )
