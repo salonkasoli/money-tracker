@@ -9,6 +9,7 @@ import com.github.salonkasoli.moneytracker.domain.EditMoneyRepository
 import com.github.salonkasoli.moneytracker.domain.MoneyRecordRepository
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartAddItem
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartItem
+import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartTotalItem
 import com.github.salonkasoli.moneytracker.util.AppLogger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -31,6 +32,9 @@ class MoneyPartViewModel : ViewModel() {
                 .subscribe(
                     {
                         val resultList = mutableListOf<Any>()
+                        resultList.add(MoneyPartTotalItem(
+                            it.sumOf { it.value }
+                        ))
                         resultList.addAll(
                             it.mapIndexed { index, editMoneyEntity ->
                                 MoneyPartItem(

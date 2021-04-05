@@ -11,6 +11,7 @@ import com.github.salonkasoli.moneytracker.ui.input.TotalInputActivity
 import com.github.salonkasoli.moneytracker.ui.input.TotalInputArgs
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartAddDelegate
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartItemDelegate
+import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartTotalDelegate
 import com.github.salonkasoli.moneytracker.util.rv.BaseAdapter
 
 class MoneyPartActivity : AppCompatActivity() {
@@ -26,6 +27,7 @@ class MoneyPartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMoneyPartBinding
     private val adapter = BaseAdapter().apply {
+        addDelegate(MoneyPartTotalDelegate())
         addDelegate(MoneyPartItemDelegate {
             startActivity(
                 TotalInputActivity.intent(

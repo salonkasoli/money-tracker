@@ -5,6 +5,7 @@
     <string name="total_total_title">А сколько денег?</string>
     <string name="total_input_button_next">Сохранить</string>
 
+    <string name="money_part_total">Всего</string>
     <string name="money_part_add">Добавить</string>
     <string name="money_part_save">Сохранить</string>
 </resources>
