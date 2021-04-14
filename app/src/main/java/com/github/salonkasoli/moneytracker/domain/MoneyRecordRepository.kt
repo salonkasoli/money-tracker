@@ -7,8 +7,11 @@ import com.github.salonkasoli.moneytracker.db.MoneyRecordEntity
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class MoneyRecordRepository(
+@Singleton
+class MoneyRecordRepository @Inject constructor(
     private val moneyRecordDao: MoneyRecordDao,
     private val moneyPartDao: MoneyPartDao
 ) {

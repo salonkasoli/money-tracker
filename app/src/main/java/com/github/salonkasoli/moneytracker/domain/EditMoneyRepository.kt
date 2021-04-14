@@ -5,8 +5,11 @@ import com.github.salonkasoli.moneytracker.util.AppLogger
 import io.reactivex.Completable
 import io.reactivex.Observable
 import io.reactivex.Single
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class EditMoneyRepository(
+@Singleton
+class EditMoneyRepository @Inject constructor(
     private val moneyRecordRepository: MoneyRecordRepository
 ) {
 

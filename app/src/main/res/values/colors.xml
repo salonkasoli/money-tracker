@@ -12,4 +12,7 @@
     <color name="text_link">#03A9F4</color>
 
     <color name="background_base">@color/white</color>
+
+    <color name="common_N1">#E6E6E6</color>
+    <color name="common_N2">#FF03DAC5</color>
 </resources>

@@ -1,29 +1,32 @@
 package com.github.salonkasoli.moneytracker.ui.moneypart
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.github.salonkasoli.moneytracker.App
 import com.github.salonkasoli.moneytracker.domain.EditMoneyRepository
-import com.github.salonkasoli.moneytracker.domain.MoneyRecordRepository
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartAddItem
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartItem
 import com.github.salonkasoli.moneytracker.ui.moneypart.rv.MoneyPartTotalItem
 import com.github.salonkasoli.moneytracker.util.AppLogger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class MoneyPartViewModel : ViewModel() {
+
+    @Inject
+    lateinit var repo: EditMoneyRepository
 
     val state: LiveData<MoneyPartViewState>
         get() = _state
 
-    private val repo: EditMoneyRepository = App.instance.editMoneyRepository
-
     private val _state = MutableLiveData(MoneyPartViewState(emptyList()))
-
     private val disposable = CompositeDisposable()
+
+    init {
+        App.instance.appComponent.inject(this)
+    }
 
     fun loadData() {
         disposable.add(

@@ -13,18 +13,25 @@ import com.github.salonkasoli.moneytracker.util.State
 import com.github.salonkasoli.moneytracker.util.TimeUtil
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 class TotalInputViewModel : ViewModel() {
+
+    @Inject
+    lateinit var db: TotalMoneyDao
+
+    @Inject
+    lateinit var editMoneyRepository: EditMoneyRepository
 
     val state: LiveData<State>
         get() = _state
 
     private val _state = MutableLiveData<State>()
-
-    private val db: TotalMoneyDao = App.instance.db.totalMoneyDao()
-    private val editMoneyRepository: EditMoneyRepository = App.instance.editMoneyRepository
-
     private val disposable = CompositeDisposable()
+
+    init {
+        App.instance.appComponent.inject(this)
+    }
 
     fun update(totalInputArgs: TotalInputArgs) {
         disposable.add(
